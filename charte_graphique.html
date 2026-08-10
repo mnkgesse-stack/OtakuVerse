@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OtakuVerse — Charte graphique</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ov-charcoal: #161311;
+    --ov-charcoal-soft: #201c19;
+    --ov-gold: #C6A15B;
+    --ov-cream: #F3E7CE;
+    --ov-red: #C81E3A;
+    --ov-red-glow: rgba(200, 30, 58, .35);
+
+    --ov-bg: var(--ov-charcoal);
+    --ov-bg-soft: var(--ov-charcoal-soft);
+    --ov-text: var(--ov-cream);
+    --ov-text-muted: #b9ac95;
+    --ov-accent: var(--ov-gold);
+
+    --ov-radius: 10px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--ov-bg);
+    color: var(--ov-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* ===== Layout général ===== */
+  .cg-shell{
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+  }
+
+  /* Sommaire latéral */
+  .cg-sidebar{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 40px 24px;
+    background: var(--ov-bg-soft);
+    border-right: 1px solid color-mix(in srgb, var(--ov-accent) 15%, transparent);
+    overflow-y: auto;
+  }
+  .cg-sidebar__brand{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0 0 6px;
+  }
+  .cg-sidebar__brand em{ font-style: normal; color: var(--ov-gold); }
+  .cg-sidebar__sub{
+    font-size: 12px;
+    color: var(--ov-text-muted);
+    margin: 0 0 32px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .cg-nav{ list-style: none; margin: 0; padding: 0; }
+  .cg-nav li{ margin-bottom: 4px; }
+  .cg-nav a{
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: var(--ov-text-muted);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background .2s ease, color .2s ease;
+  }
+  .cg-nav a:hover{ background: color-mix(in srgb, var(--ov-gold) 10%, transparent); color: var(--ov-text); }
+
+  /* Contenu principal */
+  .cg-main{ padding: 56px 64px 120px; max-width: 980px; }
+
+  .cg-header{ margin-bottom: 64px; }
+  .cg-header__eyebrow{
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ov-gold);
+    margin: 0 0 12px;
+  }
+  .cg-header__title{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin: 0 0 16px;
+  }
+  .cg-header__desc{
+    font-size: 15px;
+    color: var(--ov-text-muted);
+    max-width: 620px;
+    margin: 0;
+  }
+
+  section.cg-section{
+    margin-bottom: 80px;
+    padding-top: 24px;
+    border-top: 1px solid color-mix(in srgb, var(--ov-accent) 12%, transparent);
+  }
+  .cg-section__title{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0 0 8px;
+  }
+  .cg-section__note{
+    font-size: 14px;
+    color: var(--ov-text-muted);
+    margin: 0 0 32px;
+    max-width: 640px;
+  }
+
+  /* ===== Couleurs ===== */
+  .cg-color-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+  }
+  .cg-swatch{
+    border-radius: var(--ov-radius);
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--ov-accent) 15%, transparent);
+  }
+  .cg-swatch__color{ height: 96px; }
+  .cg-swatch__info{ padding: 14px 16px; background: var(--ov-bg-soft); }
+  .cg-swatch__name{ font-size: 14px; font-weight: 600; margin: 0 0 2px; }
+  .cg-swatch__code{
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 12px;
+    color: var(--ov-text-muted);
+    margin: 0;
+  }
+
+  /* ===== Typographie ===== */
+  .cg-type-row{
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--ov-accent) 10%, transparent);
+    flex-wrap: wrap;
+  }
+  .cg-type-row:last-child{ border-bottom: none; }
+  .cg-type-row__meta{
+    flex: 0 0 200px;
+    font-size: 12.5px;
+    color: var(--ov-text-muted);
+  }
+  .cg-type-row__meta strong{ display: block; color: var(--ov-text); font-size: 13px; margin-bottom: 2px; }
+  .cg-type-sample{ font-family: 'Cormorant Garamond', serif; }
+  .cg-type-sample.is-body{ font-family: 'Inter', sans-serif; }
+
+  /* ===== Boutons ===== */
+  .cg-row{ display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+
+  .ov-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 28px;
+    border-radius: var(--ov-radius);
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: .01em;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .ov-btn--primary{ background: var(--ov-gold); color: var(--ov-charcoal); border-color: var(--ov-gold); }
+  .ov-btn--primary:hover{ background: var(--ov-red); border-color: var(--ov-red); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px var(--ov-red-glow); }
+  .ov-btn--ghost{ background: transparent; color: var(--ov-text); border-color: color-mix(in srgb, var(--ov-accent) 45%, transparent); }
+  .ov-btn--ghost:hover{ border-color: var(--ov-red); color: var(--ov-red); transform: translateY(-2px); }
+
+  /* ===== Cartes ===== */
+  .cg-card-demo{
+    width: 220px;
+    border-radius: var(--ov-radius);
+    overflow: hidden;
+    background: var(--ov-bg-soft);
+    border: 1px solid color-mix(in srgb, var(--ov-accent) 15%, transparent);
+    transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .cg-card-demo:hover{
+    transform: translateY(-10px) scale(1.02);
+    border-color: color-mix(in srgb, var(--ov-gold) 65%, transparent);
+    box-shadow: 0 24px 44px -18px color-mix(in srgb, var(--ov-red) 35%, transparent), 0 0 0 1px color-mix(in srgb, var(--ov-gold) 30%, transparent);
+  }
+  .cg-card-demo__thumb{
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--ov-gold) 25%, var(--ov-bg-soft)), var(--ov-bg-soft));
+  }
+  .cg-card-demo__body{ padding: 14px 16px 18px; }
+  .cg-card-demo__cat{ font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ov-gold); margin: 0 0 6px; }
+  .cg-card-demo__title{ font-size: 14px; font-weight: 600; margin: 0 0 8px; }
+  .cg-card-demo__price{ font-size: 13px; color: var(--ov-text-muted); margin: 0; }
+
+  /* ===== Icônes / composants UI ===== */
+  .cg-icon-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--ov-accent) 30%, transparent);
+    color: var(--ov-text-muted);
+    background: none;
+    transition: color .25s ease, border-color .25s ease, background .25s ease;
+  }
+  .cg-icon-btn:hover{ color: var(--ov-red); border-color: color-mix(in srgb, var(--ov-red) 40%, transparent); background: color-mix(in srgb, var(--ov-red) 8%, transparent); }
+  .cg-icon-btn svg{ width: 18px; height: 18px; }
+
+  .cg-lang-circle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--ov-accent) 45%, transparent);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ov-gold);
+  }
+
+  .cg-badge{
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--ov-red);
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  /* ===== Espacements ===== */
+  .cg-spacing-row{ display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .cg-spacing-bar{ background: var(--ov-gold); height: 10px; border-radius: 2px; }
+  .cg-spacing-label{ font-size: 12.5px; color: var(--ov-text-muted); width: 130px; flex-shrink: 0; }
+
+  /* ===== Motifs / effets ===== */
+  .cg-effect-box{
+    padding: 28px;
+    border-radius: var(--ov-radius);
+    background: var(--ov-bg-soft);
+    border: 1px solid color-mix(in srgb, var(--ov-accent) 15%, transparent);
+    text-align: center;
+    font-size: 14px;
+    color: var(--ov-text-muted);
+  }
+  .cg-effect-underline{
+    position: relative;
+    display: inline-block;
+    color: var(--ov-text);
+    font-weight: 600;
+    padding-bottom: 4px;
+  }
+  .cg-effect-underline::after{
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 2px;
+    background: var(--ov-red);
+    box-shadow: 0 0 10px var(--ov-red-glow);
+  }
+
+  code{
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 12.5px;
+    background: color-mix(in srgb, var(--ov-charcoal) 40%, var(--ov-bg-soft));
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--ov-gold);
+  }
+
+  @media (max-width: 860px){
+    .cg-shell{ grid-template-columns: 1fr; }
+    .cg-sidebar{ position: relative; height: auto; }
+    .cg-main{ padding: 40px 24px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cg-shell">
+
+  <!-- Sommaire -->
+  <aside class="cg-sidebar">
+    <p class="cg-sidebar__brand">Otaku<em>Verse</em></p>
+    <p class="cg-sidebar__sub">Charte graphique</p>
+
+    <ul class="cg-nav">
+      <li><a href="#couleurs">Couleurs</a></li>
+      <li><a href="#typographie">Typographie</a></li>
+      <li><a href="#boutons">Boutons</a></li>
+      <li><a href="#composants">Composants UI</a></li>
+      <li><a href="#cartes">Cartes produit</a></li>
+      <li><a href="#effets">Effets & interactions</a></li>
+      <li><a href="#espacements">Espacements & rayons</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenu -->
+  <main class="cg-main">
+
+    <header class="cg-header">
+      <p class="cg-header__eyebrow">Design system</p>
+      <h1 class="cg-header__title">Charte graphique OtakuVerse</h1>
+      <p class="cg-header__desc">
+        Référence visuelle du site : palette de couleurs, typographies, composants et effets d'interaction utilisés sur l'ensemble de la landing page.
+      </p>
+    </header>
+
+    <!-- ===== Couleurs ===== -->
+    <section class="cg-section" id="couleurs">
+      <h2 class="cg-section__title">Couleurs</h2>
+      <p class="cg-section__note">Palette charbon / or / crème / rouge — ambiance sombre et premium, avec le rouge réservé aux accents et effets de survol.</p>
+
+      <div class="cg-color-grid">
+        <div class="cg-swatch">
+          <div class="cg-swatch__color" style="background:#161311;"></div>
+          <div class="cg-swatch__info">
+            <p class="cg-swatch__name">Charbon</p>
+            <p class="cg-swatch__code">#161311 — fond principal</p>
+          </div>
+        </div>
+        <div class="cg-swatch">
+          <div class="cg-swatch__color" style="background:#201c19;"></div>
+          <div class="cg-swatch__info">
+            <p class="cg-swatch__name">Charbon doux</p>
+            <p class="cg-swatch__code">#201c19 — fond cartes / sections</p>
+          </div>
+        </div>
+        <div class="cg-swatch">
+          <div class="cg-swatch__color" style="background:#C6A15B;"></div>
+          <div class="cg-swatch__info">
+            <p class="cg-swatch__name">Or</p>
+            <p class="cg-swatch__code">#C6A15B — accent principal</p>
+          </div>
+        </div>
+        <div class="cg-swatch">
+          <div class="cg-swatch__color" style="background:#F3E7CE;"></div>
+          <div class="cg-swatch__info">
+            <p class="cg-swatch__name">Crème</p>
+            <p class="cg-swatch__code">#F3E7CE — texte principal</p>
+          </div>
+        </div>
+        <div class="cg-swatch">
+          <div class="cg-swatch__color" style="background:#C81E3A;"></div>
+          <div class="cg-swatch__info">
+            <p class="cg-swatch__name">Rouge</p>
+            <p class="cg-swatch__code">#C81E3A — hover / accents forts</p>
+          </div>
+        </div>
+        <div class="cg-swatch">
+          <div class="cg-swatch__color" style="background:#b9ac95;"></div>
+          <div class="cg-swatch__info">
+            <p class="cg-swatch__name">Texte atténué</p>
+            <p class="cg-swatch__code">#b9ac95 — sous-titres, méta</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Typographie ===== -->
+    <section class="cg-section" id="typographie">
+      <h2 class="cg-section__title">Typographie</h2>
+      <p class="cg-section__note">Cormorant Garamond pour les titres (élégance, caractère éditorial) — Inter pour le texte courant (lisibilité, neutralité).</p>
+
+      <div class="cg-type-row">
+        <div class="cg-type-row__meta"><strong>Titre H1</strong>Cormorant Garamond · 600 · clamp(2.4–4.2rem)</div>
+        <div class="cg-type-sample" style="font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 600;">Votre bibliothèque ne dort jamais.</div>
+      </div>
+      <div class="cg-type-row">
+        <div class="cg-type-row__meta"><strong>Titre section</strong>Cormorant Garamond · 600 · ~26–32px</div>
+        <div class="cg-type-sample" style="font-size: 28px; font-weight: 600;">Nouveautés</div>
+      </div>
+      <div class="cg-type-row">
+        <div class="cg-type-row__meta"><strong>Eyebrow / label</strong>Inter · 600 · 12.5px · uppercase</div>
+        <div class="cg-type-sample is-body" style="font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ov-gold);">Explorer par univers</div>
+      </div>
+      <div class="cg-type-row">
+        <div class="cg-type-row__meta"><strong>Corps de texte</strong>Inter · 400–500 · 14.5–16px</div>
+        <div class="cg-type-sample is-body" style="font-size: 15.5px; color: var(--ov-text-muted); max-width: 420px;">Éditions soignées, figurines et goodies sélectionnés pour ceux qui vivent chaque série à fond.</div>
+      </div>
+      <div class="cg-type-row">
+        <div class="cg-type-row__meta"><strong>Nav / boutons</strong>Inter · 600 · 14–14.5px</div>
+        <div class="cg-type-sample is-body" style="font-size: 14.5px; font-weight: 600;">Explorer les catégories</div>
+      </div>
+    </section>
+
+    <!-- ===== Boutons ===== -->
+    <section class="cg-section" id="boutons">
+      <h2 class="cg-section__title">Boutons</h2>
+      <p class="cg-section__note">Le bouton primaire passe au rouge au survol (jamais l'inverse) — le rouge signale toujours une interaction, jamais un état statique.</p>
+
+      <div class="cg-row">
+        <button class="ov-btn ov-btn--primary">Bouton primaire</button>
+        <button class="ov-btn ov-btn--ghost">Bouton secondaire</button>
+      </div>
+      <p class="cg-section__note">Survolez les boutons pour voir l'effet (lift + halo rouge).</p>
+    </section>
+
+    <!-- ===== Composants UI ===== -->
+    <section class="cg-section" id="composants">
+      <h2 class="cg-section__title">Composants UI</h2>
+      <p class="cg-section__note">Éléments récurrents de la navbar et des sections.</p>
+
+      <div class="cg-row">
+        <span class="cg-lang-circle">FR</span>
+
+        <button class="cg-icon-btn" aria-label="Exemple">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 4h2l1.6 10.6a2 2 0 0 0 2 1.7h8a2 2 0 0 0 2-1.6L20 8H6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg>
+        </button>
+
+        <span class="cg-badge">Nouveau</span>
+
+        <span class="cg-effect-underline">Lien avec soulignement</span>
+      </div>
+    </section>
+
+    <!-- ===== Cartes produit ===== -->
+    <section class="cg-section" id="cartes">
+      <h2 class="cg-section__title">Cartes produit</h2>
+      <p class="cg-section__note">Fond légèrement plus clair que l'arrière-plan, bordure dorée fine, lift + double liseré or/rouge au survol.</p>
+
+      <div class="cg-row">
+        <div class="cg-card-demo">
+          <div class="cg-card-demo__thumb"></div>
+          <div class="cg-card-demo__body">
+            <p class="cg-card-demo__cat">Shônen</p>
+            <p class="cg-card-demo__title">Titre du produit</p>
+            <p class="cg-card-demo__price">6,50 €</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Effets & interactions ===== -->
+    <section class="cg-section" id="effets">
+      <h2 class="cg-section__title">Effets & interactions</h2>
+      <p class="cg-section__note">Principes appliqués sur l'ensemble du site.</p>
+
+      <div class="cg-effect-box">
+        <p><strong style="color: var(--ov-text);">Scroll-reveal :</strong> les éléments montent depuis le bas avec un léger décalage en cascade entre eux (IntersectionObserver).</p>
+        <p><strong style="color: var(--ov-text);">Hover accentué :</strong> lift (translateY), légère mise à l'échelle, halo double or/rouge, image qui zoome légèrement.</p>
+        <p><strong style="color: var(--ov-text);">Rouge = interaction :</strong> jamais utilisé en couleur de fond statique, toujours en réponse au survol/clic.</p>
+        <p style="margin-bottom: 0;"><strong style="color: var(--ov-text);">Accessibilité :</strong> toutes les animations respectent <code>prefers-reduced-motion</code>.</p>
+      </div>
+    </section>
+
+    <!-- ===== Espacements & rayons ===== -->
+    <section class="cg-section" id="espacements">
+      <h2 class="cg-section__title">Espacements & rayons</h2>
+      <p class="cg-section__note">Échelle utilisée pour les marges, écarts de grille et arrondis.</p>
+
+      <div class="cg-spacing-row"><span class="cg-spacing-label">Rayon standard</span><div class="cg-spacing-bar" style="width: 10px; border-radius: 10px;"></div><code>border-radius: 10px</code></div>
+      <div class="cg-spacing-row"><span class="cg-spacing-label">Gap cartes</span><div class="cg-spacing-bar" style="width: 28px;"></div><code>gap: 28px</code></div>
+      <div class="cg-spacing-row"><span class="cg-spacing-label">Padding section</span><div class="cg-spacing-bar" style="width: 90px;"></div><code>padding: 90px 24px</code></div>
+      <div class="cg-spacing-row"><span class="cg-spacing-label">Header sticky</span><div class="cg-spacing-bar" style="width: 76px;"></div><code>height: 76px</code></div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

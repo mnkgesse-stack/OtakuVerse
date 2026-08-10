@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OtakuVerse — Mangas, accessoires & collectibles</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== OtakuVerse — Fond animé global ===== -->
+  <div class="ov-bg-fx" id="ovBgFx" aria-hidden="true">
+    <div class="ov-petals" id="ovPetals"></div>
+  </div>
+
+  <!-- ===== OtakuVerse — Écran de chargement ===== -->
+  <div class="ov-loader" id="ovLoader" role="status" aria-label="Chargement d'OtakuVerse">
+    <div class="ov-loader__box">
+      <p class="ov-loader__wordmark">OtakuVerse</p>
+    </div>
+  </div>
+
+  <!-- ===== Navbar ===== -->
+  <header class="ov-header" id="ovHeader">
+    <div class="ov-header__inner">
+
+      <a href="#accueil" class="ov-logo" aria-label="OtakuVerse — Accueil">
+        <svg class="ov-logo__icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 10c6-3 12-3 18 1v27c-6-4-12-4-18-1V10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M42 10c-6-3-12-3-18 1v27c6-4 12-4 18-1V10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M24 11v27" stroke="currentColor" stroke-width="2"/>
+          <path d="M31 6v10l-3.5-2.5L24 16V6" fill="currentColor"/>
+        </svg>
+        <span class="ov-logo__text">Otaku<em>Verse</em></span>
+      </a>
+
+      <nav class="ov-nav" id="ovNav" aria-label="Navigation principale">
+        <ul class="ov-nav__list">
+          <li><a href="#accueil" class="ov-nav__link is-active" data-i18n="nav_home">Accueil</a></li>
+          <li><a href="#nouveautes" class="ov-nav__link" data-i18n="nav_new">Nouveautés</a></li>
+          <li><a href="#categories" class="ov-nav__link" data-i18n="nav_categories">Catégories</a></li>
+          <li><a href="#accessoires" class="ov-nav__link" data-i18n="nav_accessories">Accessoires</a></li>
+          <li><a href="#bestsellers" class="ov-nav__link" data-i18n="nav_bestsellers">Meilleures ventes</a></li>
+          <li><a href="#apropos" class="ov-nav__link" data-i18n="nav_about">À propos</a></li>
+          <li><a href="#contact" class="ov-nav__link" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="ov-actions">
+
+        <button type="button" class="ov-lang" id="ovLangToggle" aria-label="Changer de langue">
+          <span class="ov-lang__code">FR</span>
+        </button>
+
+        <button type="button" class="ov-icon-btn" id="ovThemeToggle" aria-label="Basculer le mode clair / sombre" aria-pressed="false">
+          <svg class="ov-icon ov-icon--sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <svg class="ov-icon ov-icon--moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <a href="#panier" class="ov-icon-btn ov-cart" id="ovCart" aria-label="Voir le panier">
+          <svg class="ov-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 4h2l1.6 10.6a2 2 0 0 0 2 1.7h8a2 2 0 0 0 2-1.6L20 8H6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1.4" fill="currentColor"/>
+            <circle cx="17" cy="20" r="1.4" fill="currentColor"/>
+          </svg>
+          <span class="ov-cart__badge" id="ovCartCount">0</span>
+        </a>
+
+        <button type="button" class="ov-burger" id="ovBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="ovNav">
+          <span></span><span></span><span></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="ov-hero" id="accueil">
+
+    <div class="ov-hero__bg" aria-hidden="true">
+      <div class="ov-hero__glow"></div>
+    </div>
+
+    <div class="ov-hero__content" id="ovHeroContent">
+      <div class="ov-hero__emblem">
+        <span class="ov-hero__ring ov-hero__ring--outer"></span>
+        <span class="ov-hero__ring ov-hero__ring--inner"></span>
+        <img src="Logos/logo_2_OV.png" alt="OtakuVerse" class="ov-hero__emblem-img" loading="lazy">
+      </div>
+      <p class="ov-hero__eyebrow" data-i18n="hero_eyebrow">Mangas · Accessoires · Collectibles</p>
+
+      <h1 class="ov-hero__title">
+        <span data-i18n="hero_title_1">Votre bibliothèque</span><br>
+        <span class="ov-hero__title-accent" data-i18n="hero_title_2">ne dort jamais.</span>
+      </h1>
+
+      <p class="ov-hero__subtitle" data-i18n="hero_sub">
+        Éditions soignées, figurines et goodies sélectionnés pour ceux qui vivent chaque série à fond.
+      </p>
+
+      <div class="ov-hero__actions">
+        <a href="#categories" class="ov-btn ov-btn--primary" data-i18n="hero_cta_primary">Explorer les catégories</a>
+        <a href="#inscription" class="ov-btn ov-btn--ghost" data-i18n="hero_cta_secondary">Créer un compte</a>
+      </div>
+    </div>
+
+    <button type="button" class="ov-hero__scroll" id="ovScrollCue" aria-label="Défiler vers le contenu">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 4v14M6 12l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- ===== Nouveautés ===== -->
+  <section class="ov-section ov-new" id="nouveautes">
+    <div class="ov-section__inner">
+
+      <header class="ov-section__head">
+        <div>
+          <p class="ov-section__eyebrow" data-i18n="new_eyebrow">Fraîchement arrivés</p>
+          <h2 class="ov-section__title" data-i18n="new_title">Nouveautés</h2>
+        </div>
+        <a href="#tout-nouveautes" class="ov-link-arrow" data-i18n="new_seeall">
+          Voir tout
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <div class="ov-card-grid" id="ovNewGrid">
+
+        <article class="ov-card">
+          <div class="ov-card__thumb">
+            <img src="Nouveautés/Jujutsu Kaisen_ The Culling Game Part 1 — AniDB.jpg" alt="Couverture manga" loading="lazy">
+            <span class="ov-card__badge" data-i18n="badge_new">Nouveau</span>
+          </div>
+          <div class="ov-card__body">
+            <p class="ov-card__category" data-i18n="cat_shonen">Shônen</p>
+            <h3 class="ov-card__title">Jujutsu Kaisen</h3>
+            <p class="ov-card__price">6,50 €</p>
+          </div>
+        </article>
+
+        <article class="ov-card">
+          <div class="ov-card__thumb">
+            <img src="Nouveautés/Witch Hat Atelier.jpg" alt="Couverture manga" loading="lazy">
+            <span class="ov-card__badge" data-i18n="badge_new">Nouveau</span>
+          </div>
+          <div class="ov-card__body">
+            <p class="ov-card__category" data-i18n="cat_seinen">Seinen</p>
+            <h3 class="ov-card__title">Witch Hat Atelier</h3>
+            <p class="ov-card__price">7,00 €</p>
+          </div>
+        </article>
+
+        <article class="ov-card">
+          <div class="ov-card__thumb">
+            <img src="Nouveautés/You and I Are Polar Opposites, svelata l’opening___.jpg" alt="Couverture manga" loading="lazy">
+            <span class="ov-card__badge" data-i18n="badge_new">Nouveau</span>
+          </div>
+          <div class="ov-card__body">
+            <p class="ov-card__category" data-i18n="cat_shojo">Shôjo</p>
+            <h3 class="ov-card__title">You and I Are Polar Opposites</h3>
+            <p class="ov-card__price">6,50 €</p>
+          </div>
+        </article>
+
+        <article class="ov-card">
+          <div class="ov-card__thumb">
+            <img src="Nouveautés/Sousou no Frieren  Frieren_ Beyond Journey's End.jpg" alt="Couverture manga" loading="lazy">
+            <span class="ov-card__badge" data-i18n="badge_new">Nouveau</span>
+          </div>
+          <div class="ov-card__body">
+            <p class="ov-card__category" data-i18n="cat_isekai">Shônen</p>
+            <h3 class="ov-card__title">Frieren Beyond Journey's End</h3>
+            <p class="ov-card__price">6,80 €</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Catégories ===== -->
+  <section class="ov-section ov-cats" id="categories">
+    <div class="ov-section__inner">
+
+      <header class="ov-section__head">
+        <div>
+          <p class="ov-section__eyebrow" data-i18n="cats_eyebrow">Explorer par univers</p>
+          <h2 class="ov-section__title" data-i18n="cats_title">Catégories</h2>
+        </div>
+        <a href="#toutes-categories" class="ov-link-arrow" data-i18n="cats_seeall">
+          Tout voir
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <div class="ov-cat-grid">
+
+        <!-- SHÔNEN -->
+        <a href="#shonen" class="ov-cat-card ov-cat-card--feature">
+          <svg viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" aria-label="Catégorie Shônen" preserveAspectRatio="xMidYMid slice">
+            <rect width="180" height="260" rx="12" fill="#FAECE7" stroke="#D85A30" stroke-width="1"/>
+            <g transform="translate(90,95)">
+              <path d="M0 -55 L8 -20 L0 -30 L-8 -20 Z" fill="#D85A30"/>
+              <path d="M0 55 L8 20 L0 30 L-8 20 Z" fill="#D85A30"/>
+              <path d="M55 0 L20 8 L30 0 L20 -8 Z" fill="#D85A30"/>
+              <path d="M-55 0 L-20 8 L-30 0 L-20 -8 Z" fill="#D85A30"/>
+              <path d="M39 -39 L14 -14 L20 -22 L28 -28 Z" fill="#D85A30"/>
+              <path d="M-39 39 L-14 14 L-20 22 L-28 28 Z" fill="#D85A30"/>
+              <path d="M39 39 L14 14 L22 20 L28 28 Z" fill="#D85A30"/>
+              <path d="M-39 -39 L-14 -14 L-22 -20 L-28 -28 Z" fill="#D85A30"/>
+              <circle r="16" fill="#4A1B0C"/>
+              <rect x="-4" y="-38" width="8" height="55" rx="2" fill="#4A1B0C" transform="rotate(20)"/>
+              <rect x="-6" y="14" width="12" height="10" rx="2" fill="#4A1B0C" transform="rotate(20)"/>
+            </g>
+          </svg>
+
+          <div class="ov-cat-card__overlay"></div>
+          <div class="ov-cat-card__body">
+            <p class="ov-cat-card__count" data-i18n="cats_count_shonen">120 titres</p>
+            <h3 class="ov-cat-card__title" data-i18n="cat_shonen">Shônen</h3>
+          </div>
+        </a>
+
+        <!-- SHÔJO -->
+        <a href="#shojo" class="ov-cat-card">
+          <svg viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" aria-label="Catégorie Shôjo" preserveAspectRatio="xMidYMid slice">
+            <rect width="180" height="260" rx="12" fill="#FBEAF0" stroke="#D4537E" stroke-width="1"/>
+            <g transform="translate(90,95)">
+              <ellipse cx="0" cy="-24" rx="14" ry="20" fill="#D4537E"/>
+              <ellipse cx="0" cy="24" rx="14" ry="20" fill="#D4537E"/>
+              <ellipse cx="-24" cy="0" rx="20" ry="14" fill="#D4537E"/>
+              <ellipse cx="24" cy="0" rx="20" ry="14" fill="#D4537E"/>
+              <ellipse cx="-17" cy="-17" rx="16" ry="12" transform="rotate(45 -17 -17)" fill="#D4537E"/>
+              <ellipse cx="17" cy="17" rx="16" ry="12" transform="rotate(45 17 17)" fill="#D4537E"/>
+              <ellipse cx="-17" cy="17" rx="16" ry="12" transform="rotate(-45 -17 17)" fill="#D4537E"/>
+              <ellipse cx="17" cy="-17" rx="16" ry="12" transform="rotate(-45 17 -17)" fill="#D4537E"/>
+              <circle r="10" fill="#4B1528"/>
+              <path d="M-4 55 Q -30 65 -20 90 Q -8 78 -4 55 Z" fill="#D4537E"/>
+              <path d="M4 55 Q 30 65 20 90 Q 8 78 4 55 Z" fill="#D4537E"/>
+            </g>
+          </svg>
+
+          <div class="ov-cat-card__overlay"></div>
+          <div class="ov-cat-card__body">
+            <p class="ov-cat-card__count" data-i18n="cats_count_shojo">86 titres</p>
+            <h3 class="ov-cat-card__title" data-i18n="cat_shojo">Shôjo</h3>
+          </div>
+        </a>
+
+        <!-- SEINEN -->
+        <a href="#seinen" class="ov-cat-card">
+          <svg viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" aria-label="Catégorie Seinen" preserveAspectRatio="xMidYMid slice">
+            <rect width="180" height="260" rx="12" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+            <g transform="translate(128,50)">
+              <path d="M0 -30 A30 30 0 1 0 0 30 A24 24 0 1 1 0 -30 Z" fill="#185FA5"/>
+            </g>
+            <circle cx="40" cy="30" r="1.2" fill="#85B7EB"/>
+            <circle cx="95" cy="20" r="1" fill="#85B7EB"/>
+            <circle cx="70" cy="45" r="1" fill="#85B7EB"/>
+            <g>
+              <rect x="0" y="150" width="20" height="60" fill="#042C53"/>
+              <rect x="22" y="120" width="24" height="90" fill="#042C53"/>
+              <rect x="48" y="165" width="18" height="45" fill="#042C53"/>
+              <rect x="68" y="95" width="26" height="115" fill="#042C53"/>
+              <rect x="96" y="140" width="20" height="70" fill="#042C53"/>
+              <rect x="118" y="110" width="24" height="100" fill="#042C53"/>
+              <rect x="144" y="155" width="18" height="55" fill="#042C53"/>
+              <rect x="163" y="130" width="17" height="80" fill="#042C53"/>
+              <rect x="28" y="130" width="4" height="6" fill="#FAC775"/>
+              <rect x="36" y="145" width="4" height="6" fill="#FAC775"/>
+              <rect x="75" y="110" width="4" height="6" fill="#FAC775"/>
+              <rect x="83" y="140" width="4" height="6" fill="#FAC775"/>
+              <rect x="75" y="160" width="4" height="6" fill="#FAC775"/>
+              <rect x="124" y="130" width="4" height="6" fill="#FAC775"/>
+              <rect x="132" y="150" width="4" height="6" fill="#FAC775"/>
+              <rect x="150" y="170" width="4" height="6" fill="#FAC775"/>
+            </g>
+          </svg>
+
+          <div class="ov-cat-card__overlay"></div>
+          <div class="ov-cat-card__body">
+            <p class="ov-cat-card__count" data-i18n="cats_count_seinen">74 titres</p>
+            <h3 class="ov-cat-card__title" data-i18n="cat_seinen">Seinen</h3>
+          </div>
+        </a>
+
+        <!-- JOSEI -->
+        <a href="#josei" class="ov-cat-card">
+          <svg viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" aria-label="Catégorie Josei" preserveAspectRatio="xMidYMid slice">
+            <rect width="180" height="260" rx="12" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+            <g transform="translate(90,95)">
+              <path d="M0 -10 Q -50 -40 -55 5 Q -35 0 -20 10 Q -35 20 -50 40 Q -10 30 0 -10 Z" fill="#1D9E75"/>
+              <path d="M0 -10 Q 50 -40 55 5 Q 35 0 20 10 Q 35 20 50 40 Q 10 30 0 -10 Z" fill="#1D9E75"/>
+              <ellipse cx="0" cy="0" rx="6" ry="10" fill="#04342C"/>
+              <path d="M0 40 Q -14 55 0 72 Q 14 55 0 40 Z" fill="#1D9E75"/>
+              <path d="M0 42 L0 68" stroke="#04342C" stroke-width="1.5"/>
+            </g>
+          </svg>
+
+          <div class="ov-cat-card__overlay"></div>
+          <div class="ov-cat-card__body">
+            <p class="ov-cat-card__count" data-i18n="cats_count_josei">41 titres</p>
+            <h3 class="ov-cat-card__title" data-i18n="cat_josei">Josei</h3>
+          </div>
+        </a>
+
+        <!-- ISEKAI & FANTASY -->
+        <a href="#isekai" class="ov-cat-card">
+          <svg viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" aria-label="Catégorie Isekai & Fantasy" preserveAspectRatio="xMidYMid slice">
+            <rect width="180" height="260" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+            <g transform="translate(90,100)">
+              <ellipse rx="45" ry="55" fill="none" stroke="#534AB7" stroke-width="6"/>
+              <ellipse rx="30" ry="38" fill="none" stroke="#7F77DD" stroke-width="3"/>
+              <ellipse rx="15" ry="20" fill="#26215C"/>
+              <path d="M0 -4 L1.5 0 L0 4 L-1.5 0 Z" fill="#AFA9EC" transform="translate(-55,-45)"/>
+              <path d="M0 -4 L1.5 0 L0 4 L-1.5 0 Z" fill="#AFA9EC" transform="translate(55,-50)"/>
+              <path d="M0 -4 L1.5 0 L0 4 L-1.5 0 Z" fill="#AFA9EC" transform="translate(-50,50)"/>
+              <path d="M0 -4 L1.5 0 L0 4 L-1.5 0 Z" fill="#AFA9EC" transform="translate(48,48)"/>
+            </g>
+          </svg>
+
+          <div class="ov-cat-card__overlay"></div>
+          <div class="ov-cat-card__body">
+            <p class="ov-cat-card__count" data-i18n="cats_count_isekai">58 titres</p>
+            <h3 class="ov-cat-card__title" data-i18n="cat_isekai">Isekai &amp; Fantasy</h3>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Accessoires ===== -->
+  <section class="ov-section ov-acc" id="accessoires">
+    <div class="ov-section__inner">
+
+      <header class="ov-section__head">
+        <div>
+          <p class="ov-section__eyebrow" data-i18n="acc_eyebrow">Au-delà des pages</p>
+          <h2 class="ov-section__title" data-i18n="acc_title">Accessoires</h2>
+        </div>
+        <a href="#tous-accessoires" class="ov-link-arrow" data-i18n="acc_seeall">
+          Voir tout
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <div class="ov-acc-grid" id="ovAccGrid">
+
+        <article class="ov-acc-card">
+          <div class="ov-acc-card__thumb">
+            <img src="Accessoires/Figurines.jpg" alt="Figurine collector" loading="lazy">
+          </div>
+          <div class="ov-acc-card__body">
+            <p class="ov-acc-card__category" data-i18n="acc_cat_figurine">Figurine</p>
+            <p class="ov-acc-card__price">32,00 €</p>
+          </div>
+        </article>
+
+        <article class="ov-acc-card">
+          <div class="ov-acc-card__thumb">
+            <img src="Accessoires/Goodies.jpg" alt="Poster édition limitée" loading="lazy">
+          </div>
+          <div class="ov-acc-card__body">
+            <p class="ov-acc-card__category" data-i18n="acc_cat_goodies">Goodies</p>
+            <p class="ov-acc-card__price">14,50 €</p>
+          </div>
+        </article>
+
+        <article class="ov-acc-card">
+          <div class="ov-acc-card__thumb">
+            <img src="Accessoires/Porte-clés.jpg" alt="Porte-clés" loading="lazy">
+          </div>
+          <div class="ov-acc-card__body">
+            <p class="ov-acc-card__category" data-i18n="acc_cat_keychain">Porte-clés</p>
+            <p class="ov-acc-card__price">9,00 €</p>
+          </div>
+        </article>
+
+        <article class="ov-acc-card">
+          <div class="ov-acc-card__thumb">
+            <img src="Accessoires/Mugs.jpg" alt="Mug thématique" loading="lazy">
+          </div>
+          <div class="ov-acc-card__body">
+            <p class="ov-acc-card__category" data-i18n="acc_cat_mug">Mug</p>
+            <p class="ov-acc-card__price">16,00 €</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Meilleures ventes ===== -->
+  <section class="ov-section ov-best" id="bestsellers">
+    <div class="ov-section__inner">
+
+      <header class="ov-section__head">
+        <div>
+          <p class="ov-section__eyebrow" data-i18n="best_eyebrow">Le classement</p>
+          <h2 class="ov-section__title" data-i18n="best_title">Meilleures ventes</h2>
+        </div>
+        <a href="#tout-bestsellers" class="ov-link-arrow" data-i18n="best_seeall">
+          Voir tout
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <ol class="ov-best-list" id="ovBestList">
+
+        <li class="ov-best-item">
+          <span class="ov-best-item__rank">01</span>
+          <div class="ov-best-item__thumb">
+            <img src="Meill_Ventes/Demon_slayer.jpg" alt="Couverture manga" loading="lazy">
+          </div>
+          <div class="ov-best-item__info">
+            <p class="ov-best-item__category" data-i18n="cat_shonen">Shônen</p>
+            <h3 class="ov-best-item__title">Demon Slayer</h3>
+            <p class="ov-best-item__meta" data-i18n="best_sold_1">1 240 ventes ce mois-ci</p>
+          </div>
+          <p class="ov-best-item__price">6,50 €</p>
+        </li>
+
+        <li class="ov-best-item">
+          <span class="ov-best-item__rank">02</span>
+          <div class="ov-best-item__thumb">
+            <img src="Meill_Ventes/Snk.jpg" alt="Couverture manga" loading="lazy">
+          </div>
+          <div class="ov-best-item__info">
+            <p class="ov-best-item__category" data-i18n="cat_seinen">Seinen</p>
+            <h3 class="ov-best-item__title">Attack On Titan</h3>
+            <p class="ov-best-item__meta" data-i18n="best_sold_2">980 ventes ce mois-ci</p>
+          </div>
+          <p class="ov-best-item__price">7,00 €</p>
+        </li>
+
+        <li class="ov-best-item">
+          <span class="ov-best-item__rank">03</span>
+          <div class="ov-best-item__thumb">
+            <img src="Meill_Ventes/Tempest_World.jpg" alt="Couverture manga" loading="lazy">
+          </div>
+          <div class="ov-best-item__info">
+            <p class="ov-best-item__category" data-i18n="cat_isekai">Isekai &amp; Fantasy</p>
+            <h3 class="ov-best-item__title">That Time I Got Reincarned As A Slime</h3>
+            <p class="ov-best-item__meta" data-i18n="best_sold_3">875 ventes ce mois-ci</p>
+          </div>
+          <p class="ov-best-item__price">6,80 €</p>
+        </li>
+
+        <li class="ov-best-item">
+          <span class="ov-best-item__rank">04</span>
+          <div class="ov-best-item__thumb">
+            <img src="Meill_Ventes/Fruit basket.jpg" alt="Couverture manga" loading="lazy">
+          </div>
+          <div class="ov-best-item__info">
+            <p class="ov-best-item__category" data-i18n="cat_shojo">Shôjo</p>
+            <h3 class="ov-best-item__title">Fruit Basket</h3>
+            <p class="ov-best-item__meta" data-i18n="best_sold_4">712 ventes ce mois-ci</p>
+          </div>
+          <p class="ov-best-item__price">6,50 €</p>
+        </li>
+
+        <li class="ov-best-item">
+          <span class="ov-best-item__rank">05</span>
+          <div class="ov-best-item__thumb">
+            <img src="Meill_Ventes/Tokyo_Ghoul.jpg" alt="Couverture manga" loading="lazy">
+          </div>
+          <div class="ov-best-item__info">
+            <p class="ov-best-item__category" data-i18n="cat_seinen">Seinen</p>
+            <h3 class="ov-best-item__title">Tokyo Ghoul</h3>
+            <p class="ov-best-item__meta" data-i18n="best_sold_5">640 ventes ce mois-ci</p>
+          </div>
+          <p class="ov-best-item__price">7,20 €</p>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== À propos ===== -->
+  <section class="ov-section ov-about" id="apropos">
+    <div class="ov-section__inner ov-about__inner">
+
+      <div class="ov-about__logo">
+        <img src="Logos/logo_1_OV.png" alt="Logo OtakuVerse" loading="lazy">
+      </div>
+
+      <div class="ov-about__text">
+        <p class="ov-section__eyebrow" data-i18n="about_eyebrow">Notre histoire</p>
+        <h2 class="ov-section__title" data-i18n="about_title">À propos d'OtakuVerse</h2>
+
+        <p class="ov-about__paragraph" data-i18n="about_p1">
+          Né de la passion pour les mangas et la culture japonaise, OtakuVerse est pensé comme un espace où chaque lecteur trouve sa prochaine obsession — des classiques intemporels aux pépites les plus récentes.
+        </p>
+        <p class="ov-about__paragraph" data-i18n="about_p2">
+          Nous sélectionnons avec soin chaque édition, chaque figurine et chaque accessoire, pour que la qualité soit toujours au rendez-vous, du premier tome à la dernière étagère.
+        </p>
+
+        <a href="#contact" class="ov-btn ov-btn--primary" data-i18n="about_cta">Nous contacter</a>
+      </div>
+
+      <div class="ov-about__stats">
+        <div class="ov-stat">
+          <p class="ov-stat__number" data-target="850">0</p>
+          <p class="ov-stat__label" data-i18n="about_stat_titles">Titres au catalogue</p>
+        </div>
+        <div class="ov-stat">
+          <p class="ov-stat__number" data-target="12">0</p>
+          <p class="ov-stat__label" data-i18n="about_stat_years">Années d'expérience</p>
+        </div>
+        <div class="ov-stat">
+          <p class="ov-stat__number" data-target="9400">0</p>
+          <p class="ov-stat__label" data-i18n="about_stat_clients">Clients satisfaits</p>
+        </div>
+        <div class="ov-stat">
+          <p class="ov-stat__number" data-target="24">0</p>
+          <p class="ov-stat__label" data-i18n="about_stat_countries">Pays livrés</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== OtakuVerse — Contact ===== -->
+  <section class="ov-section ov-contact" id="contact">
+    <div class="ov-section__inner ov-contact__inner">
+
+      <div class="ov-contact__info">
+        <p class="ov-section__eyebrow" data-i18n="contact_eyebrow">Une question ?</p>
+        <h2 class="ov-section__title" data-i18n="contact_title">Contact</h2>
+        <p class="ov-contact__lead" data-i18n="contact_lead">
+          Une question sur une commande, une suggestion de titre, ou juste envie de parler manga ? Écris-nous.
+        </p>
+
+        <ul class="ov-contact__list">
+          <li class="ov-contact__item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11z" stroke="currentColor" stroke-width="1.5"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="mailto:contact@otakuverse.com">contact@otakuverse.com</a>
+          </li>
+          <li class="ov-contact__item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.2c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V19.7c0 .6-.4 1-1 1C11.3 20.7 3.3 12.7 3.3 3.7c0-.6.4-1 1-1H8c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.2 1.1L6.6 10.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <a href="tel:+33100000000">+33 1 00 00 00 00</a>
+          </li>
+          <li class="ov-contact__item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span data-i18n="contact_address">Paris, France</span>
+          </li>
+        </ul>
+
+        <div class="ov-contact__socials">
+          <a href="#" class="ov-icon-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <form class="ov-contact__form" id="ovContactForm" novalidate>
+        <div class="ov-field">
+          <label for="ovName" data-i18n="contact_label_name">Nom</label>
+          <input type="text" id="ovName" name="name" required autocomplete="name">
+          <span class="ov-field__error" data-i18n="contact_error_name">Merci d'indiquer votre nom.</span>
+        </div>
+
+        <div class="ov-field">
+          <label for="ovEmail" data-i18n="contact_label_email">Email</label>
+          <input type="email" id="ovEmail" name="email" required autocomplete="email">
+          <span class="ov-field__error" data-i18n="contact_error_email">Merci d'indiquer un email valide.</span>
+        </div>
+
+        <div class="ov-field">
+          <label for="ovMessage" data-i18n="contact_label_message">Message</label>
+          <textarea id="ovMessage" name="message" rows="5" required></textarea>
+          <span class="ov-field__error" data-i18n="contact_error_message">Merci d'écrire un message.</span>
+        </div>
+
+        <button type="submit" class="ov-btn ov-btn--primary ov-contact__submit" data-i18n="contact_submit">
+          Envoyer le message
+        </button>
+
+        <p class="ov-contact__success" id="ovContactSuccess" data-i18n="contact_success" role="status" hidden>
+          Message envoyé — merci, on te répond très vite !
+        </p>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ===== OtakuVerse — Footer ===== -->
+  <footer class="ov-footer">
+    <div class="ov-footer__inner">
+
+      <!-- Bloc haut : logo, newsletter, CTA -->
+      <div class="ov-footer__top">
+        <div class="ov-footer__brand">
+          <a href="#accueil" class="ov-logo" aria-label="OtakuVerse — Accueil">
+            <svg class="ov-logo__icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 10c6-3 12-3 18 1v27c-6-4-12-4-18-1V10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M42 10c-6-3-12-3-18 1v27c6-4 12-4 18-1V10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M24 11v27" stroke="currentColor" stroke-width="2"/>
+              <path d="M31 6v10l-3.5-2.5L24 16V6" fill="currentColor"/>
+            </svg>
+            <span class="ov-logo__text">Otaku<em>Verse</em></span>
+          </a>
+          <p class="ov-footer__tagline" data-i18n="footer_tagline">
+            Mangas, figurines et goodies pour ceux qui vivent chaque série à fond.
+          </p>
+        </div>
+
+        <div class="ov-footer__newsletter">
+          <p class="ov-footer__newsletter-title" data-i18n="footer_newsletter_title">Reste dans la boucle</p>
+          <p class="ov-footer__newsletter-sub" data-i18n="footer_newsletter_sub">Sorties, ventes exclusives et actus, une fois par semaine max.</p>
+
+          <form class="ov-newsletter-form" id="ovNewsletterForm" novalidate>
+            <div class="ov-newsletter-form__row">
+              <label for="ovNewsletterEmail" class="ov-visually-hidden" data-i18n="footer_newsletter_label">Adresse email</label>
+              <input type="email" id="ovNewsletterEmail" name="email" placeholder="ton@email.com" required autocomplete="email">
+              <button type="submit" data-i18n="footer_newsletter_submit">S'inscrire</button>
+            </div>
+            <p class="ov-newsletter-form__msg" id="ovNewsletterMsg" role="status"></p>
+          </form>
+
+          <a href="#contact" class="ov-link-arrow ov-footer__contact-cta" data-i18n="footer_contact_cta">
+            Une question ? Contacte-nous
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonnes de liens + réseaux -->
+      <div class="ov-footer__columns">
+
+        <nav class="ov-footer__col" aria-label="Boutique">
+          <p class="ov-footer__col-title" data-i18n="footer_col_shop">Boutique</p>
+          <ul>
+            <li><a href="#nouveautes" data-i18n="nav_new">Nouveautés</a></li>
+            <li><a href="#categories" data-i18n="nav_categories">Catégories</a></li>
+            <li><a href="#accessoires" data-i18n="nav_accessories">Accessoires</a></li>
+            <li><a href="#bestsellers" data-i18n="nav_bestsellers">Meilleures ventes</a></li>
+          </ul>
+        </nav>
+
+        <nav class="ov-footer__col" aria-label="Aide">
+          <p class="ov-footer__col-title" data-i18n="footer_col_help">Aide</p>
+          <ul>
+            <li><a href="#faq" data-i18n="footer_link_faq">FAQ</a></li>
+            <li><a href="#livraison" data-i18n="footer_link_shipping">Livraison</a></li>
+            <li><a href="#retours" data-i18n="footer_link_returns">Retours</a></li>
+            <li><a href="#suivi" data-i18n="footer_link_tracking">Suivi de commande</a></li>
+          </ul>
+        </nav>
+
+        <nav class="ov-footer__col" aria-label="Entreprise">
+          <p class="ov-footer__col-title" data-i18n="footer_col_company">Entreprise</p>
+          <ul>
+            <li><a href="#apropos" data-i18n="nav_about">À propos</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            <li><a href="#carrieres" data-i18n="footer_link_careers">Carrières</a></li>
+            <li><a href="#blog" data-i18n="footer_link_blog">Blog</a></li>
+          </ul>
+        </nav>
+
+        <div class="ov-footer__col ov-footer__col--socials">
+          <p class="ov-footer__col-title" data-i18n="footer_col_follow">Suis-nous</p>
+          <div class="ov-footer__socials">
+            <a href="#" class="ov-icon-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="#" class="ov-icon-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 3v10.5a3.2 3.2 0 1 1-2.6-3.15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 3c.3 2.2 2 3.9 4.2 4.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <a href="#" class="ov-icon-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5v-5z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barre du bas -->
+      <div class="ov-footer__bottom">
+        <p class="ov-footer__copyright">
+          © <span id="ovYear">2026</span> OtakuVerse. <span data-i18n="footer_rights">Tous droits réservés.</span>
+        </p>
+
+        <ul class="ov-footer__legal">
+          <li><a href="#mentions" data-i18n="footer_legal_notice">Mentions légales</a></li>
+          <li><a href="#cgv" data-i18n="footer_legal_terms">CGV</a></li>
+          <li><a href="#confidentialite" data-i18n="footer_legal_privacy">Confidentialité</a></li>
+          <li><a href="charte_graphique.html" target="_blank" data-i18n="footer_legal_style_guide">Charte graphique</a></li>
+        </ul>
+
+        <div class="ov-footer__meta">
+          <span class="ov-footer__payment" data-i18n="footer_payment">Paiement sécurisé</span>
+          <span class="ov-footer__locale">FR · €</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
